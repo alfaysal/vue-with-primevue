@@ -18,7 +18,7 @@
 
   <div class="bg-gray-100 h-screen">
     <div class="flex">
-      <div :class="store.sidebarIsExpanded ? 'w-52' : 'w-16'">
+      <div :class="store.sidebarIsExpanded ? 'w-52' : 'w-20'">
         <Sidebar></Sidebar>
       </div>
       <div class="w-full">

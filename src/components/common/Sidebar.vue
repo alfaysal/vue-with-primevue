@@ -13,20 +13,15 @@
 
       <PanelMenu
           :model="items"
-          pt:panel="border-surface-200 dark:border-surface-700 text-sm"
+          pt:panel="border-surface-200 dark:border-surface-700 text-sm w-20 text-center"
+          pt:headerContent="bg-surface-0 dark:bg-surface-900 rounded-md"
       >
         <template #item="{ item }">
-          <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
-            <a class="flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2" :href="href" @click="navigate">
-              <span :class="`${item.icon} text-sm`" />
-              <span class="ml-2" v-if="store.sidebarIsExpanded">{{ item.label }}</span>
+          <div @click="changeStyle(item)" :class="selected === item.label ? 'bg-gray-100 text-primary': ''">
+            <a :href="item.url" :target="item.target">
+              <span :class="`${item.icon} text-2xl p-3`"/>
             </a>
-          </router-link>
-          <a v-else :class="[store.sidebarIsExpanded ? '' : 'left-4', 'flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2']" :href="item.url" :target="item.target">
-            <span :class="`${item.icon} text-xl`" />
-            <span class="ml-2" v-if="store.sidebarIsExpanded">{{ item.label }}</span>
-            <span v-if="item.items" class="pi pi-angle-down text-primary ml-auto" />
-          </a>
+          </div>
         </template>
       </PanelMenu>
     </div>
@@ -41,10 +36,10 @@ import { useLayoutStore } from '@/stores/layout.js'
 const store = useLayoutStore();
 
 import { useRouter } from 'vue-router';
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 const router = useRouter();
 
-const items = ref([
+const items = reactive([
   {
     label: 'Order',
     icon: 'pi pi-palette',
@@ -80,9 +75,15 @@ const items = ref([
     ]
   }
 ]);
+const myDiv = ref(null);
+const selected = ref('Order')
+
+const changeStyle = (item) => {
+  selected.value = item.label;
+}
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
