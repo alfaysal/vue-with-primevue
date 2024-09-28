@@ -27,3 +27,10 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Demo pages
+
+```sh
+/orders
+/sign-in
+```

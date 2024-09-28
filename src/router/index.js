@@ -15,8 +15,8 @@ const router = createRouter({
       component: () => import('../views/inventory/Index.vue')
     },
     {
-      path: '/order',
-      name: 'order',
+      path: '/orders',
+      name: 'orders',
       component: () => import('../views/order/Index.vue')
     },
     {

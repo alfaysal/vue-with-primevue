@@ -1,4 +1,3 @@
-
 <template>
   <div class="flex justify-center items-center w-full h-screen">
     <Card class="w-96">

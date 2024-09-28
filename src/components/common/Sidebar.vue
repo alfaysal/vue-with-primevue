@@ -18,14 +18,14 @@
         <template #item="{ item }">
           <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
             <a class="flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2" :href="href" @click="navigate">
-              <span :class="item.icon" />
+              <span :class="`${item.icon} text-sm`" />
               <span class="ml-2" v-if="store.sidebarIsExpanded">{{ item.label }}</span>
             </a>
           </router-link>
           <a v-else :class="[store.sidebarIsExpanded ? '' : 'left-4', 'flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2']" :href="item.url" :target="item.target">
             <span :class="`${item.icon} text-xl`" />
             <span class="ml-2" v-if="store.sidebarIsExpanded">{{ item.label }}</span>
-            <span v-if="item.items" class="pi pi-angle-down text-primary ml-2" />
+            <span v-if="item.items" class="pi pi-angle-down text-primary ml-auto" />
           </a>
         </template>
       </PanelMenu>
@@ -50,15 +50,12 @@ const items = ref([
     icon: 'pi pi-palette',
     items: [
       {
-        label: 'Styled',
+        label: 'List',
+        icon: 'pi pi-list',
         command: () => {
-          router.push('/order');
+          router.push('/orders');
         }
       },
-      {
-        label: 'Unstyled',
-        route: '/overview'
-      }
     ]
   },
   {
