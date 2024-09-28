@@ -24,8 +24,8 @@ import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import Badge from 'primevue/badge';
 
-import PendingOrderList from "@/components/order/PendingOrderList.vue";
-import ProcessingOrderList from "@/components/order/ProcessingOrderList.vue";
+import PendingOrderList from "@/components/order/pendingOrderList.vue";
+import ProcessingOrderList from "@/components/order/processingOrderList.vue";
 import {onMounted, ref, shallowRef} from "vue";
 
 const selectedTab = ref('0');

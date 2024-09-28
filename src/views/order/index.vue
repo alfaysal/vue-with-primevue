@@ -1,8 +1,8 @@
 <script setup>
 import Layout from "@/components/layout/layout.vue";
 import HeaderSection from "@/components/layout/header-section.vue";
-import Button from "primevue/button";
 import OrderContent from "@/components/order/list.vue";
+import CreateOrder from "@/components/order/create.vue";
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import OrderContent from "@/components/order/list.vue";
             </div>
 
             <div>
-              <Button severity="info">Click here</Button>
+              <CreateOrder></CreateOrder>
             </div>
           </div>
         </template>
