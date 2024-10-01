@@ -1,4 +1,3 @@
-<!-- src/components/Sidebar-old.vue -->
 <template>
   <div :class="['flex flex-col h-screen', isCollapsed ? 'w-20' : 'w-64']" class="bg-surface-100 dark:bg-surface-900 text-surface-700 dark:text-surface-300 transition-all duration-300">
     <!-- Toggle Sidebar Button -->
@@ -15,8 +14,8 @@
         <!-- Main Menu Item -->
         <div
             @click="item.items && toggleSubMenu(item.label)"
-            class="flex items-center p-3 cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-900 rounded-lg transition-colors"
-            :class="[isCollapsed ? 'justify-center' : '']"
+            class="flex items-center p-3 cursor-pointer rounded-lg transition-colors"
+            :class="mainMenuClass(item)"
         >
           <i :class="[isCollapsed ? 'text-2xl' : '', item.icon]"></i>
           <span v-if="!isCollapsed" class="ml-4">{{ item.label }}</span>
@@ -25,14 +24,11 @@
 
         <!-- Nested Submenu -->
         <ul v-if="item.items && isSubMenuOpen(item.label) && !isCollapsed" class="pl-6 space-y-1">
-          <li
-              v-for="(subItem, subIndex) in item.items"
-              :key="subIndex"
-          >
+          <li v-for="(subItem, subIndex) in item.items" :key="subIndex">
             <router-link
                 :to="subItem.route"
-                class="flex items-center p-2 hover:bg-surface-200 dark:hover:bg-surface-800 rounded-md transition-colors"
-                :class="[isCollapsed ? 'justify-center' : '', isRouteActive(subItem.route) ? 'bg-surface-300 dark:bg-surface-700 text-primary' : '']"
+                class="flex items-center p-2 rounded-md transition-colors"
+                :class="subMenuClass(subItem)"
             >
               <i :class="subItem.icon"></i>
               <span v-if="!isCollapsed" class="ml-4">{{ subItem.label }}</span>
@@ -45,7 +41,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -65,7 +61,7 @@ export default {
         icon: 'pi pi-fw pi-cog',
         items: [
           {
-            label: 'All Order',
+            label: 'All Orders',
             icon: 'pi pi-fw pi-user',
             route: '/orders',
           },
@@ -112,17 +108,42 @@ export default {
 
     const isAnySubItemActive = (label) => {
       const menuItem = menuItems.find(item => item.label === label);
-      if (menuItem && menuItem.items) {
-        return menuItem.items.some(subItem => subItem.route === route.path);
-      }
-      return false;
+      return menuItem?.items?.some(subItem => subItem.route === route.path) || false;
     };
 
     const isRouteActive = (path) => {
       return route.path === path;
     };
 
-    return { isCollapsed, menuItems, toggleSidebar, toggleSubMenu, isSubMenuOpen, isRouteActive };
+    const mainMenuClass = (item) => {
+      const isMenuSelected = isRouteActive(item.route) || isAnySubItemActive(item.label);
+      return [
+        isMenuSelected ? 'text-primary' : 'hover:bg-surface-100 dark:hover:bg-surface-900',
+        isMenuSelected && isCollapsed.value ? 'bg-primary-500 text-white' : '',
+        isCollapsed.value ? 'justify-center' : ''
+      ];
+    };
+
+    const subMenuClass = (subItem) => {
+      return [
+        isRouteActive(subItem.route) ? 'text-primary' : 'hover:bg-surface-200 dark:hover:bg-surface-800',
+        isCollapsed.value ? 'justify-center' : ''
+      ];
+    };
+
+    return {
+      isCollapsed,
+      menuItems,
+      toggleSidebar,
+      toggleSubMenu,
+      isSubMenuOpen,
+      isRouteActive,
+      mainMenuClass,
+      subMenuClass
+    };
   },
 };
 </script>
+
+<style scoped>
+</style>
