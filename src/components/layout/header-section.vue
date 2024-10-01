@@ -4,7 +4,7 @@
       pt:body="p-3"
   >
     <template #content>
-      <slot name="content"></slot>
+      <slot></slot>
     </template>
   </Card>
 </template>

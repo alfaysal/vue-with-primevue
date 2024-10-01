@@ -9,15 +9,15 @@ import Button from "primevue/button";
     <Layout>
       <template #content-header>
         <HeaderSection>
-          <div class="flex justify-between items-center">
-            <div>
-              <h2 class="text-2xl">Inventory</h2>
-            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <h2 class="text-2xl">Inventory</h2>
+              </div>
 
-            <div>
-              <Button severity="info">Click here</Button>
+              <div>
+                <Button severity="info">Click here</Button>
+              </div>
             </div>
-          </div>
         </HeaderSection>
       </template>
       <template #content-body>

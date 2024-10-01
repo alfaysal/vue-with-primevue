@@ -9,17 +9,15 @@ import CreateOrder from "@/components/order/create.vue";
   <Layout>
     <template #content-header>
       <HeaderSection>
-        <template #content>
-          <div class="flex justify-between items-center">
-            <div>
-              <h2>Order List</h2>
-            </div>
-
-            <div>
-              <CreateOrder></CreateOrder>
-            </div>
+        <div class="flex justify-between items-center">
+          <div>
+            <h2>Order List</h2>
           </div>
-        </template>
+
+          <div>
+            <CreateOrder></CreateOrder>
+          </div>
+        </div>
       </HeaderSection>
     </template>
     <template #content-body>
