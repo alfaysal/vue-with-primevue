@@ -1,12 +1,12 @@
 <template>
   <div class="flex">
     <Sidebar :isCollapsed="isSidebarCollapsed" />
-    <div class="flex-grow p-4">
+    <div class="flex-grow">
       <Navbar></Navbar>
-      <div class="my-2">
+      <div class="my-2 p-4">
         <slot name="content-header"></slot>
       </div>
-      <div class="rounded-sm">
+      <div class="rounded-sm p-4">
         <slot name="content-body"></slot>
       </div>
     </div>

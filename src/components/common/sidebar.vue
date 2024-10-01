@@ -1,22 +1,22 @@
 <!-- src/components/Sidebar-old.vue -->
 <template>
-  <div :class="['flex flex-col h-screen', isCollapsed ? 'w-20' : 'w-64']" class="bg-gray-800 text-gray-200 transition-all duration-300">
+  <div :class="['flex flex-col h-screen', isCollapsed ? 'w-20' : 'w-64']" class="bg-surface-100 dark:bg-surface-900 text-surface-700 dark:text-surface-300 transition-all duration-300">
     <!-- Toggle Sidebar Button -->
     <button
         @click="toggleSidebar"
         class="p-3 self-end text-white hover:bg-gray-700"
     >
-      <i class="pi" :class="isCollapsed ? 'pi-chevron-right' : 'pi-chevron-left'"></i>
+      <i class="pi text-primary" :class="isCollapsed ? 'pi-chevron-right' : 'pi-chevron-left'"></i>
     </button>
 
     <!-- Menu List -->
-    <ul class="space-y-2 mt-4">
+    <ul class="space-y-2 mt-2">
       <li v-for="(item, index) in menuItems" :key="index" class="relative group">
         <!-- Main Menu Item -->
         <div
             @click="item.items && toggleSubMenu(item.label)"
-            class="flex items-center p-3 cursor-pointer hover:bg-gray-700 rounded-lg transition-colors"
-            :class="`${isCollapsed ? 'justify-center' : ''}`"
+            class="flex items-center p-3 cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-900 rounded-lg transition-colors"
+            :class="[isCollapsed ? 'justify-center' : '']"
         >
           <i :class="[isCollapsed ? 'text-2xl' : '', item.icon]"></i>
           <span v-if="!isCollapsed" class="ml-4">{{ item.label }}</span>
@@ -24,15 +24,15 @@
         </div>
 
         <!-- Nested Submenu -->
-        <ul v-if="item.items && isSubMenuOpen(item.label)" class="pl-6 space-y-1">
+        <ul v-if="item.items && isSubMenuOpen(item.label) && !isCollapsed" class="pl-6 space-y-1">
           <li
               v-for="(subItem, subIndex) in item.items"
               :key="subIndex"
           >
             <router-link
                 :to="subItem.route"
-                class="flex items-center p-2 hover:bg-gray-700 rounded-md transition-colors"
-                :class="[isCollapsed ? 'justify-center' : '', isRouteActive(subItem.route) ? 'bg-gray-600 text-primary' : '']"
+                class="flex items-center p-2 hover:bg-surface-200 dark:hover:bg-surface-800 rounded-md transition-colors"
+                :class="[isCollapsed ? 'justify-center' : '', isRouteActive(subItem.route) ? 'bg-surface-300 dark:bg-surface-700 text-primary' : '']"
             >
               <i :class="subItem.icon"></i>
               <span v-if="!isCollapsed" class="ml-4">{{ subItem.label }}</span>
