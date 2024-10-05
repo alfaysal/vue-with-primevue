@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex bg-surface-0 dark:bg-surface-800">
     <Sidebar :isCollapsed="isSidebarCollapsed" />
     <div class="flex-grow">
       <Navbar></Navbar>
