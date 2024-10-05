@@ -5,12 +5,16 @@
       <div class="col-span-4 flex justify-center items-center tracking-wide">
         <h4 class="text-surface-700 dark:text-surface-0 uppercase text-xl">Business Suite</h4>
       </div>
-      <div class="col-span-7">
+      <div class="col-span-6">
 
       </div>
-      <div class="col-span-1 flex justify-center items-center gap-4 mr-4">
+      <div class="col-span-2 flex justify-center items-center gap-4">
         <div>
-          <span class="font-bold text-2xl" @click="toggleDark()">
+          <Notification />
+        </div>
+
+        <div>
+          <span class="font-bold text-xl" @click="toggleDark()">
             <i class="pi pi-sun text-surface-700 dark:text-surface-0"></i>
           </span>
         </div>
@@ -39,10 +43,12 @@
 <script setup>
 import Avatar from "primevue/avatar";
 import Menu from "primevue/menu";
+import ScrollPanel from "primevue/scrollpanel";
 import { useDark, useToggle } from "@vueuse/core";
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 import { ref } from "vue";
+import Notification from "@/components/common/Notification.vue";
 
 console.log('here', isDark.value);
 const items = ref([
@@ -101,6 +107,7 @@ const items = ref([
   }
 ]);
 const menu = ref();
+const scrollPanel = ref();
 const profileItems = ref([
   {
     label: 'Profile',
@@ -124,5 +131,9 @@ const profileItems = ref([
 const toggle = (event) => {
   menu.value.toggle(event);
 };
+
+const toggle2 = (event) => {
+  scrollPanel.value.toggle(event)
+}
 
 </script>
